@@ -1,3 +1,4 @@
+//set game configs
 var config = {
     type: Phaser.AUTO,
     width: 1282,
@@ -16,12 +17,13 @@ var config = {
     }
     
 }
-
+//initiate game 
 var game = new Phaser.Game(config)
 
-
+//preload method, here i preload all the images used in the game in the browser's memory 
 function preload ()
 {
+    //preload game decor
     this.load.image("background", "/assets/images/GAME TILESET/Background_01.png")
     this.load.image("chimney1", "/assets/images/GAME TILESET/Building/Chimney_02.png")
     this.load.image("chimney2", "/assets/images/GAME TILESET/Building/Chimney_03.png")
@@ -46,17 +48,27 @@ function preload ()
     this.load.image("grass1", "/assets/images/GAME TILESET/Environment/Grass_01.png")
     this.load.image("grass2", "/assets/images/GAME TILESET/Environment/Grass_02.png")
 
+    //preload game platforms
     this.load.image("ground", "/assets/images/GAME TILESET/Platformer/Ground_04.png")
     this.load.image("ground1", "/assets/images/GAME TILESET/Platformer/Ground_02.png")
     this.load.image("ground2", "/assets/images/GAME TILESET/Platformer/Ground_10.png")
     this.load.image("ground3", "/assets/images/GAME TILESET/Platformer/Ground_11.png")
     this.load.image("ground4", "/assets/images/GAME TILESET/Platformer/Ground_12.png")
     this.load.image("ground5", "/assets/images/GAME TILESET/Platformer/Ground_08.png")
+
+    //preload game character sprite
+    this.load.spritesheet("knight1Idle", "/assets/images/1_KNIGHT/spritesheet.png", { 
+        frameWidth: 728.5,
+        frameHeight: 505
+    })
 }
 
 var platforms
+var player1
+//create method
 function create ()
 {
+    //Game decor 
     this.background = this.add.image(0,0,"background").setOrigin(0,0)
     this.chimney1 = this.add.image(50, 557, "chimney1")
     this.chimney1 = this.add.image(50, 429, "chimney1")
@@ -111,7 +123,7 @@ function create ()
     this.grass2.setScale(0.6)
 
 
-
+    //Game platforms with physics
     platforms = this.physics.add.staticGroup();
     platforms.create(65, 685, 'ground').setScale(1).refreshBody();   
     platforms.create(193, 685, 'ground1').setScale(1).refreshBody(); 
@@ -123,8 +135,26 @@ function create ()
     platforms.create(961, 685, 'ground4').setScale(1).refreshBody();
     platforms.create(1089, 685, 'ground1').setScale(1).refreshBody(); 
     platforms.create(1217, 685, 'ground5').setScale(1).refreshBody(); 
+
+    //sprite declaration
+    player1 = this.physics.add.sprite(500,0, "knight1Idle");
+    player1.setScale(0.37)
+    player1.setBounce(0.2)
+    player1.setCollideWorldBounds(true)
+
+    this.anims.create({
+        key: 'idle',
+        frames: this.anims.generateFrameNumbers('knight1Idle', { start: 0, end: 9 }),
+        frameRate: 10,
+        repeat: -1
+    });
+
+    
+
+    this.physics.add.collider(player1, platforms);
 }
 
 function update ()
 {
+    player1.anims.play('idle', true);
 }
