@@ -20,6 +20,20 @@ var config = {
 //initiate game 
 var game = new Phaser.Game(config)
 
+//global vars
+var platforms
+
+var cursors
+var wasdKeys
+
+//player object
+var player1 = {
+    loadSprites: [],
+    playerInfo: [],
+    animations: [],
+    playerPosition: 'right'
+}
+
 //preload method, here i preload all the images used in the game in the browser's memory 
 function preload ()
 {
@@ -56,15 +70,19 @@ function preload ()
     this.load.image("ground4", "/assets/images/GAME TILESET/Platformer/Ground_12.png")
     this.load.image("ground5", "/assets/images/GAME TILESET/Platformer/Ground_08.png")
 
-    //preload game character sprite
-    this.load.spritesheet("knight1Idle", "/assets/images/1_KNIGHT/spritesheet.png", { 
+    //preload game character sprites
+    player1.loadSprites = this.load.spritesheet("knight1Idle", "/assets/images/1_KNIGHT/knight1_idle.png", { 
         frameWidth: 728.5,
+        frameHeight: 505
+    })
+    
+    player1.loadSprites = this.load.spritesheet("knightWalk", "/assets/images/1_KNIGHT/knight1_walk.png", { 
+        frameWidth: 751.45,
         frameHeight: 505
     })
 }
 
-var platforms
-var player1
+
 //create method
 function create ()
 {
@@ -137,24 +155,65 @@ function create ()
     platforms.create(1217, 685, 'ground5').setScale(1).refreshBody(); 
 
     //sprite declaration
-    player1 = this.physics.add.sprite(500,0, "knight1Idle");
-    player1.setScale(0.37)
-    player1.setBounce(0.2)
-    player1.setCollideWorldBounds(true)
+    player1.playerInfo = this.physics.add.sprite(500,0, "knight1Idle");
+    player1.playerInfo.setScale(0.37)
+    player1.playerInfo.setCollideWorldBounds(true)
 
-    this.anims.create({
+    player1.animations = this.anims.create({
         key: 'idle',
         frames: this.anims.generateFrameNumbers('knight1Idle', { start: 0, end: 9 }),
         frameRate: 10,
         repeat: -1
     });
+    player1.animations = this.anims.create({
+        key: 'walk',
+        frames: this.anims.generateFrameNumbers('knightWalk', { start: 0, end: 9 }),
+        frameRate: 10,
+        repeat: -1
+    });
 
-    
-
-    this.physics.add.collider(player1, platforms);
+    this.physics.add.collider(player1.playerInfo, platforms);
+    //arrow keys
+    cursors = this.input.keyboard.createCursorKeys();
+    //WASD keysad
+    keys = this.input.keyboard.addKeys({ up: 'W', left: 'A', down: 'S', right: 'D' });
 }
 
 function update ()
 {
-    player1.anims.play('idle', true);
+    movePlayer()
 }
+
+//Player movement method
+function movePlayer(){
+    
+    /*if (cursors.left.isDown)
+    {
+        player1.setVelocityX(-70);
+    }
+    else if (cursors.right.isDown)
+    {
+        player1.setVelocityX(70);   
+    }
+    else
+    {
+        player1.setVelocityX(0);
+    }*/
+    if (keys.left.isDown)
+    {
+        player1.playerInfo.setVelocityX(-70);
+        player1.playerInfo.anims.play('walk', true);
+        
+    }
+    else if (keys.right.isDown)
+    {
+        player1.playerInfo.setVelocityX(70);   
+        player1.playerInfo.anims.play('walk', true);
+    }
+    else
+    {
+        player1.playerInfo.setVelocityX(0);
+        player1.playerInfo.anims.play('idle', true);
+    }
+}
+
