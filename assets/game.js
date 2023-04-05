@@ -52,72 +52,72 @@ var player2 = {
 function preload ()
 {
     //preload game decor
-    this.load.image("background", "/assets/images/GAME TILESET/Background_01.png")
-    this.load.image("chimney1", "/assets/images/GAME TILESET/Building/Chimney_02.png")
-    this.load.image("chimney2", "/assets/images/GAME TILESET/Building/Chimney_03.png")
-    this.load.image("stoneWall1", "/assets/images/GAME TILESET/Building/Wall_C_02.png")
-    this.load.image("wideDoor1", "/assets/images/GAME TILESET/Building/Wide_Door_04.png")
-    this.load.image("pillar1", "/assets/images/GAME TILESET/Building/Pillar_02.png")
-    this.load.image("pillar2", "/assets/images/GAME TILESET/Building/Pillar_01.png")
-    this.load.image("pillar3", "/assets/images/GAME TILESET/Building/Pillar_05.png")
-    this.load.image("pillar4", "/assets/images/GAME TILESET/Building/Pillar_03.png")
-    this.load.image("pillar5", "/assets/images/GAME TILESET/Building/Pillar_04.png")
-    this.load.image("canopy1", "/assets/images/GAME TILESET/Building/Canopy_01.png")
-    this.load.image("roof1", "/assets/images/GAME TILESET/Building/Roof_A_04.png")
-    this.load.image("roof2", "/assets/images/GAME TILESET/Building/Roof_A_05.png")
-    this.load.image("roofdecor1", "/assets/images/GAME TILESET/Building/Decor_Window_03.png")
-    this.load.image("well", "/assets/images/GAME TILESET/Environment/Well.png")
-    this.load.image("barrel", "/assets/images/GAME TILESET/Environment/Wooden_Barrel.png")
-    this.load.image("lantern", "/assets/images/GAME TILESET/Environment/Street_Lantern.png")
-    this.load.image("cart", "/assets/images/GAME TILESET/Environment/Decor_Cart.png")
-    this.load.image("chest", "/assets/images/GAME TILESET/Environment/Decor_Chest.png")
-    this.load.image("shield", "/assets/images/GAME TILESET/Environment/Decor_Shield.png")
-    this.load.image("sword", "/assets/images/GAME TILESET/Environment/Decor_Sword.png")
-    this.load.image("grass1", "/assets/images/GAME TILESET/Environment/Grass_01.png")
-    this.load.image("grass2", "/assets/images/GAME TILESET/Environment/Grass_02.png")
+    this.load.image("background", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Background_01.png")
+    this.load.image("chimney1", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Building/Chimney_02.png")
+    this.load.image("chimney2", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Building/Chimney_03.png")
+    this.load.image("stoneWall1", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Building/Wall_C_02.png")
+    this.load.image("wideDoor1", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Building/Wide_Door_04.png")
+    this.load.image("pillar1", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Building/Pillar_02.png")
+    this.load.image("pillar2", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Building/Pillar_01.png")
+    this.load.image("pillar3", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Building/Pillar_05.png")
+    this.load.image("pillar4", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Building/Pillar_03.png")
+    this.load.image("pillar5", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Building/Pillar_04.png")
+    this.load.image("canopy1", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Building/Canopy_01.png")
+    this.load.image("roof1", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Building/Roof_A_04.png")
+    this.load.image("roof2", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Building/Roof_A_05.png")
+    this.load.image("roofdecor1", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Building/Decor_Window_03.png")
+    this.load.image("well", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Environment/Well.png")
+    this.load.image("barrel", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Environment/Wooden_Barrel.png")
+    this.load.image("lantern", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Environment/Street_Lantern.png")
+    this.load.image("cart", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Environment/Decor_Cart.png")
+    this.load.image("chest", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Environment/Decor_Chest.png")
+    this.load.image("shield", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Environment/Decor_Shield.png")
+    this.load.image("sword", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Environment/Decor_Sword.png")
+    this.load.image("grass1", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Environment/Grass_01.png")
+    this.load.image("grass2", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Environment/Grass_02.png")
 
     //preload game platforms
-    this.load.image("ground", "/assets/images/GAME TILESET/Platformer/Ground_04.png")
-    this.load.image("ground1", "/assets/images/GAME TILESET/Platformer/Ground_02.png")
-    this.load.image("ground2", "/assets/images/GAME TILESET/Platformer/Ground_10.png")
-    this.load.image("ground3", "/assets/images/GAME TILESET/Platformer/Ground_11.png")
-    this.load.image("ground4", "/assets/images/GAME TILESET/Platformer/Ground_12.png")
-    this.load.image("ground5", "/assets/images/GAME TILESET/Platformer/Ground_08.png")
+    this.load.image("ground", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Platformer/Ground_04.png")
+    this.load.image("ground1", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Platformer/Ground_02.png")
+    this.load.image("ground2", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Platformer/Ground_10.png")
+    this.load.image("ground3", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Platformer/Ground_11.png")
+    this.load.image("ground4", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Platformer/Ground_12.png")
+    this.load.image("ground5", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/GAME TILESET/Platformer/Ground_08.png")
 
     //preload game character sprites
     //Player 1 sprites
-    player1.loadSprites = this.load.spritesheet("knight1Idle", "/assets/images/1_KNIGHT/knight1_idle.png", { 
+    player1.loadSprites = this.load.spritesheet("knight1Idle", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/1_KNIGHT/knight1_idle.png", { 
         frameWidth: 728.5,
         frameHeight: 505
     })
     
-    player1.loadSprites = this.load.spritesheet("knightWalk", "/assets/images/1_KNIGHT/knight1_walk.png", { 
+    player1.loadSprites = this.load.spritesheet("knightWalk", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/1_KNIGHT/knight1_walk.png", { 
         frameWidth: 751.45,
         frameHeight: 505
     })
-    player1.loadSprites = this.load.spritesheet("knightAttack", "/assets/images/1_KNIGHT/knight1_attack.png", { 
+    player1.loadSprites = this.load.spritesheet("knightAttack", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/1_KNIGHT/knight1_attack.png", { 
         frameWidth: 790,
         frameHeight: 505
     })
-    player1.loadSprites = this.load.spritesheet("knightDie", "/assets/images/1_KNIGHT/knight1_die.png", { 
+    player1.loadSprites = this.load.spritesheet("knightDie", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/1_KNIGHT/knight1_die.png", { 
         frameWidth: 830,
         frameHeight: 505
     })
-    player1.loadSprites = this.load.spritesheet("knightHurt", "/assets/images/1_KNIGHT/knight1_hurt.png", { 
+    player1.loadSprites = this.load.spritesheet("knightHurt", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/1_KNIGHT/knight1_hurt.png", { 
         frameWidth: 751.45,
         frameHeight: 505
     })
 
     //player 2 sprites
-    player2.loadSprites = this.load.spritesheet("knight2Idle", "/assets/images/2_KNIGHT/knight2_idle.png", { 
+    player2.loadSprites = this.load.spritesheet("knight2Idle", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/2_KNIGHT/knight2_idle.png", { 
         frameWidth: 580,
         frameHeight: 520
     })
-    player2.loadSprites = this.load.spritesheet("knight2Walk", "/assets/images/2_KNIGHT/knight2_walk.png", { 
+    player2.loadSprites = this.load.spritesheet("knight2Walk", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/2_KNIGHT/knight2_walk.png", { 
         frameWidth: 590,
         frameHeight: 525
     })
-    player2.loadSprites = this.load.spritesheet("knight2Attack", "/assets/images/2_KNIGHT/knight2_attack.png", { 
+    player2.loadSprites = this.load.spritesheet("knight2Attack", "https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/images/2_KNIGHT/knight2_attack.png", { 
         frameWidth: 607,
         frameHeight: 525
     })
