@@ -1,5 +1,7 @@
 # Milestone-Project-1-Browser-Game
 Browser game
+GitHub Pages link: 
+https://aaroncanales115.github.io/Milestone-Project-1-Browser-Game/assets/index.html
 
 Hi, this is my game Village Defender!
 
