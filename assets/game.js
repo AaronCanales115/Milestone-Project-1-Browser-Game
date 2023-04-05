@@ -22,16 +22,30 @@ var game = new Phaser.Game(config)
 
 //global vars
 var platforms
-
 var cursors
-var wasdKeys
+var wasdKeys 
 
 //player object
 var player1 = {
     loadSprites: [],
     playerInfo: [],
     animations: [],
-    playerPosition: 'right'
+    playerPosition: 'right',
+    playerStats: {
+        health: 100,
+        attackPower: 2
+    }
+}
+
+var player2 = {
+    loadSprites: [],
+    playerInfo: [],
+    animations: [],
+    playerPosition: 'right',
+    playerStats: {
+        health: 100,
+        attackPower: 2
+    }
 }
 
 //preload method, here i preload all the images used in the game in the browser's memory 
@@ -71,6 +85,7 @@ function preload ()
     this.load.image("ground5", "/assets/images/GAME TILESET/Platformer/Ground_08.png")
 
     //preload game character sprites
+    //Player 1 sprites
     player1.loadSprites = this.load.spritesheet("knight1Idle", "/assets/images/1_KNIGHT/knight1_idle.png", { 
         frameWidth: 728.5,
         frameHeight: 505
@@ -79,6 +94,32 @@ function preload ()
     player1.loadSprites = this.load.spritesheet("knightWalk", "/assets/images/1_KNIGHT/knight1_walk.png", { 
         frameWidth: 751.45,
         frameHeight: 505
+    })
+    player1.loadSprites = this.load.spritesheet("knightAttack", "/assets/images/1_KNIGHT/knight1_attack.png", { 
+        frameWidth: 790,
+        frameHeight: 505
+    })
+    player1.loadSprites = this.load.spritesheet("knightDie", "/assets/images/1_KNIGHT/knight1_die.png", { 
+        frameWidth: 830,
+        frameHeight: 505
+    })
+    player1.loadSprites = this.load.spritesheet("knightHurt", "/assets/images/1_KNIGHT/knight1_hurt.png", { 
+        frameWidth: 751.45,
+        frameHeight: 505
+    })
+
+    //player 2 sprites
+    player2.loadSprites = this.load.spritesheet("knight2Idle", "/assets/images/2_KNIGHT/knight2_idle.png", { 
+        frameWidth: 580,
+        frameHeight: 520
+    })
+    player2.loadSprites = this.load.spritesheet("knight2Walk", "/assets/images/2_KNIGHT/knight2_walk.png", { 
+        frameWidth: 590,
+        frameHeight: 525
+    })
+    player2.loadSprites = this.load.spritesheet("knight2Attack", "/assets/images/2_KNIGHT/knight2_attack.png", { 
+        frameWidth: 607,
+        frameHeight: 525
     })
 }
 
@@ -154,11 +195,13 @@ function create ()
     platforms.create(1089, 685, 'ground1').setScale(1).refreshBody(); 
     platforms.create(1217, 685, 'ground5').setScale(1).refreshBody(); 
 
-    //sprite declaration
-    player1.playerInfo = this.physics.add.sprite(500,0, "knight1Idle");
+    //Player 1 declaration
+    player1.playerInfo = this.physics.add.sprite(300,0, "knight1Idle");
+    player1.playerInfo.name = 'Player 1'
     player1.playerInfo.setScale(0.37)
     player1.playerInfo.setCollideWorldBounds(true)
 
+    //player 1 animations
     player1.animations = this.anims.create({
         key: 'idle',
         frames: this.anims.generateFrameNumbers('knight1Idle', { start: 0, end: 9 }),
@@ -171,34 +214,76 @@ function create ()
         frameRate: 10,
         repeat: -1
     });
+    player1.animations = this.anims.create({
+        key: 'attack',
+        frames: this.anims.generateFrameNumbers('knightAttack', { start: 0, end: 1 }),
+        frameRate: 5,
+        repeat: 0,
+    });
+    player1.animations = this.anims.create({
+        key: 'die',
+        frames: this.anims.generateFrameNumbers('knightDie', { start: 0, end: 7 }),
+        frameRate: 8,
+        repeat: 0,
+    });
 
-    this.physics.add.collider(player1.playerInfo, platforms);
+    //player 2 declaration
+    player2.playerInfo = this.physics.add.sprite(950,0, "knight2Idle");
+    player2.playerInfo.name = 'Player 2'
+    player2.playerInfo.setScale(0.37)
+    player2.playerInfo.setCollideWorldBounds(true)
+
+    //player 2 animations
+    player2.animations = this.anims.create({
+        key: 'idle2',
+        frames: this.anims.generateFrameNumbers('knight2Idle', { start: 0, end: 9 }),
+        frameRate: 10,
+        repeat: -1
+    });
+    player2.animations = this.anims.create({
+        key: 'walk2',
+        frames: this.anims.generateFrameNumbers('knight2Walk', { start: 0, end: 9 }),
+        frameRate: 10,
+        repeat: -1
+    });
+    player2.animations = this.anims.create({
+        key: 'attack2',
+        frames: this.anims.generateFrameNumbers('knight2Attack', { start: 0, end: 1 }),
+        frameRate: 10,
+        repeat: -1
+    });
+
+    this.physics.add.collider(player1.playerInfo,  platforms);
+    this.physics.add.collider(player2.playerInfo,  platforms);
+    
     //arrow keys
     cursors = this.input.keyboard.createCursorKeys();
     //WASD keysad
     keys = this.input.keyboard.addKeys({ up: 'W', left: 'A', down: 'S', right: 'D' });
+
+    var box = this.add.rectangle(100,100,player1.playerStats.health,30, 0xff0000)
+    this.add.text(60,90,'HP:' + player1.playerStats.health, {fontSize: 20})
+    
+    var box1 = this.add.rectangle(1170,100,player2.playerStats.health,30, 0xff0000)
+    this.add.text(1130,90,'HP:' + player2.playerStats.health, {fontSize: 20})
+
+    this.add.text(50,30, player1.playerInfo.name, {fontSize: 35, color: 'black'})
+    this.add.text(1060,30, player2.playerInfo.name, {fontSize: 35, color: 'black'})
 }
 
 function update ()
 {
-    movePlayer()
+    movePlayer1()
+    movePlayer2()
+    player2IsAlive()
+    player1IsAlive()
+    this.physics.add.collider(player1.playerInfo,  player2.playerInfo);
+    
 }
 
+//Player 1 functions
 //Player movement method
-function movePlayer(){
-    
-    /*if (cursors.left.isDown)
-    {
-        player1.setVelocityX(-70);
-    }
-    else if (cursors.right.isDown)
-    {
-        player1.setVelocityX(70);   
-    }
-    else
-    {
-        player1.setVelocityX(0);
-    }*/
+function movePlayer1(){
     if (keys.left.isDown)
     {
         player1.playerInfo.setVelocityX(-70);
@@ -210,10 +295,75 @@ function movePlayer(){
         player1.playerInfo.setVelocityX(70);   
         player1.playerInfo.anims.play('walk', true);
     }
+    else if (keys.up.isDown)
+    {   
+        player1.playerInfo.anims.play('attack', true);
+        player1Attack()
+    }
     else
     {
         player1.playerInfo.setVelocityX(0);
+        
         player1.playerInfo.anims.play('idle', true);
     }
 }
+
+function player1Attack(){
+    if ((player2.playerInfo.body.position.x - player1.playerInfo.body.position.x) < 277){
+        console.log(player2.playerInfo.body.position.x - player1.playerInfo.body.position.x)
+        player2.playerStats.health = (player2.playerStats.health - player1.playerStats.attackPower)
+        console.log(player2.playerStats.health)
+    }
+}
+
+function player1IsAlive(health){
+    health = player1.playerStats.health
+    if(player1.playerStats.health == 0){
+        console.log('dead')
+        alert('Player 2 won, player 1 is dead!')
+    }
+    
+}
+
+//player 2 functions
+function movePlayer2(){
+    
+    if (cursors.left.isDown)
+    {
+        player2.playerInfo.setVelocityX(-70);
+        player2.playerInfo.anims.play('walk2', true);
+        
+    }
+    else if (cursors.right.isDown)
+    {
+        player2.playerInfo.setVelocityX(70);   
+        player2.playerInfo.anims.play('walk2', true);
+    }
+    else if (cursors.up.isDown)
+    {   
+        player2.playerInfo.anims.play('attack2', true);
+        player2Attack()
+    }
+    else {
+        player2.playerInfo.setVelocityX(0);
+        player2.playerInfo.anims.play('idle2', true);
+    }
+}
+
+function player2IsAlive(health){
+    health = player2.playerStats.health
+    if(player2.playerStats.health == 0){
+        console.log('dead')
+        alert('Player 1 won, player 2 is dead!')
+    }
+}
+
+function player2Attack(){
+    if ((player2.playerInfo.body.position.x - player1.playerInfo.body.position.x) < 277){
+        console.log(player1.playerInfo.body.position.x - player2.playerInfo.body.position.x)
+        player1.playerStats.health = (player1.playerStats.health - player2.playerStats.attackPower)
+        console.log(player1.playerStats.health)
+    }
+}
+
 

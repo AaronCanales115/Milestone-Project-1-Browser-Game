@@ -19,3 +19,10 @@ body canvas{
     margin-right: auto;
     padding-top: 14px;
 }
+
+h1 {
+    margin: auto;
+    position: relative;
+    font-size: 38px;
+    font-family: "Lucida Console", "monospace";
+}
